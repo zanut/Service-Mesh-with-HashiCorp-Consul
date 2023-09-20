@@ -1,0 +1,35 @@
+global:
+  image: "hashicorp/consul:1.14.0"
+  peering:
+    enabled: true
+  tls:
+    enabled: true
+
+server:
+  replicas: 1
+  bootstrapExpect: 1
+  extraConfig: |
+    {
+      "log_level": "TRACE"
+    }
+
+connectInject:
+  # True if you want to enable connect injection
+  enabled: true
+  # If true, the injector will inject the
+  # Connect sidecar into all pods by default. Otherwise, pods must specify the
+  # injection annotation (https://consul.io/docs/k8s/connect#consul-hashicorp-com-connect-inject)
+  default: false # true
+
+meshGateway:
+  enabled: true
+  replicas: 1
+
+controller:
+  enabled: true
+
+ui:
+  enabled: true
+  service:
+    enabled: true
+    type: LoadBalancer
