@@ -46,7 +46,7 @@ module "eks" {
   vpc_id = module.myapp-vpc.vpc_id
 
   # to access cluster externally with kubectl
-  cluster_endpoint_public_access = true 
+  cluster_endpoint_public_access = true
 
   node_security_group_additional_rules = {
     # source_cluster_security_group = true
