@@ -27,4 +27,9 @@ ui:
    type: LoadBalancer
 # Configures and installs the automatic Consul Connect sidecar injector.
 connectInject:
- enabled: true
+  # True if you want to enable connect injection
+  enabled: true
+  # If true, the injector will inject the
+  # Connect sidecar into all pods by default. Otherwise, pods must specify the
+  # injection annotation (https://consul.io/docs/k8s/connect#consul-hashicorp-com-connect-inject)
+  default: false # true
