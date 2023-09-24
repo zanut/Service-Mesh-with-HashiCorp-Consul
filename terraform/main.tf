@@ -31,9 +31,7 @@ module "myapp-vpc" {
         "kubernetes.io/cluster/myapp-eks-cluster" = "shared"
         "kubernetes.io/role/internal-elb" = 1 
     }
-
 }
-
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -48,67 +46,12 @@ module "eks" {
   # to access cluster externally with kubectl
   cluster_endpoint_public_access = true
 
-  node_security_group_additional_rules = {
-    # source_cluster_security_group = true
-                                                                  
-    rule1 = {
-      from_port   = 8443
-      to_port     = 8443
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    rule2 = {
-      from_port   = 8300
-      to_port     = 8300
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    rule3 = {
-      from_port   = 8301
-      to_port     = 8301
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    rule4 = {
-      from_port   = 8500
-      to_port     = 8500
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    rule5 = {
-      from_port   = 8600
-      to_port     = 8600
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-    rule6 = {
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-    rule7 = {
-      from_port   = 8558
-      to_port     = 8558
-      protocol    = "tcp"
-      type        = "ingress"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-    rule8 = {
+  node_security_group_additional_rules = {                                                                  
+    all_ingress = {
       from_port   = 0
       to_port     = 0
       protocol    = "-1"
-      type        = "egress"
+      type        = "ingress"
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
