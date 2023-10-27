@@ -1,3 +1,5 @@
+Demo project accompanying a [Consul crash course video](https://www.youtube.com/watch?v=s3I1kKKfjtQ) on YouTube
+
 Terraform commands to execute the script
 
 ```sh
